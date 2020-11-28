@@ -1,0 +1,13 @@
+<p>
+    {{ object }}
+</p>
+
+<form action="{% url 'polls:vote-form' object.id %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="投票">
+</form>
+
+<p>
+    <a href="{% url 'polls:results' object.id %}">看结果</a>
+</p>
