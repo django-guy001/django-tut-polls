@@ -18,5 +18,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('user/', include('django_registration.backends.activation.urls')),
+    path('user/', include(('django.contrib.auth.urls', 'auth'), namespace='auth')),
     path('', include('polls.urls', namespace='polls')),
 ]

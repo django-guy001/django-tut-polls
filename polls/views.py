@@ -29,6 +29,7 @@ class VoteFormView(generic.FormView):
         self.object = models.Question.objects.get(id=self.kwargs['pk'])
         kwargs = super().get_form_kwargs()
         kwargs['instance'] = self.object
+        kwargs['user'] = self.request.user
         return kwargs
 
     def form_valid(self, form):

@@ -8,7 +8,8 @@ from . import models
 
 class ChoiceInline(admin.TabularInline):
     model = models.Choice
-    extra = 3
+    extra = 0
+    show_change_link = True
 
 
 @admin.register(models.Question)
@@ -28,3 +29,14 @@ class QuestionAdmin(admin.ModelAdmin):
     was_published_recently.admin_order_field = 'pub_date'
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
+
+
+class UserVoteInline(admin.TabularInline):
+    model = models.UserVote
+    fields = ['user', 'vote_datetime']
+    readonly_fields = fields
+    extra = 0
+
+@admin.register(models.Choice)
+class ChoiceAdmin(admin.ModelAdmin):
+    inlines = [UserVoteInline]
